@@ -7,7 +7,11 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+// Configure CORS to allow frontend domain
+app.use(cors({
+  origin: ['https://dashboard-bigdata-5.onrender.com', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(express.json());
 
 // Basic health check for root path so deployments don't 404
