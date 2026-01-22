@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import { Line, Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
@@ -12,7 +13,7 @@ export default function Orders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get('/api/orders/recent?limit=50000');
+        const res = await axios.get(`${API_BASE_URL}/api/orders/recent?limit=50000`);
         setOrders(res.data);
       } catch (error) {
         console.error('Error fetching orders:', error);

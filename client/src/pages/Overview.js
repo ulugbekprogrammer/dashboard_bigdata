@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import { Bar, Line } from 'react-chartjs-2';
 import StatCard from '../components/StatCard';
 import { Users, Building2, Globe, DollarSign } from 'lucide-react';
@@ -12,7 +13,7 @@ export default function Overview() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('/api/dashboard/overview');
+        const res = await axios.get(`${API_BASE_URL}/api/dashboard/overview`);
         setData(res.data);
         setError(null);
       } catch (error) {

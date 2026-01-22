@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import { Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Building2, Users, PhoneIcon, MapPin } from 'lucide-react';
@@ -17,8 +18,8 @@ export default function Offices() {
     const fetchData = async () => {
       try {
         const [officesRes, regionsRes] = await Promise.all([
-          axios.get('/api/offices'),
-          axios.get('/api/sales/by-region')
+          axios.get(`${API_BASE_URL}/api/offices`),
+          axios.get(`${API_BASE_URL}/api/sales/by-region`)
         ]);
         setOffices(officesRes.data || []);
         setRegions(regionsRes.data || []);

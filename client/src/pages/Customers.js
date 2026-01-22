@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Search } from 'lucide-react';
@@ -14,7 +15,7 @@ export default function Customers() {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const res = await axios.get('/api/customers');
+        const res = await axios.get(`${API_BASE_URL}/api/customers`);
         setCustomers(res.data);
       } catch (error) {
         console.error('Error fetching customers:', error);

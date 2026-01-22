@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import { Bar } from 'react-chartjs-2';
 import { TrendingUp, Users, Award } from 'lucide-react';
 
@@ -15,8 +16,8 @@ export default function Employees() {
     const fetchData = async () => {
       try {
         const [empRes, perfRes] = await Promise.all([
-          axios.get('/api/employees'),
-          axios.get('/api/employees/performance')
+          axios.get(`${API_BASE_URL}/api/employees`),
+          axios.get(`${API_BASE_URL}/api/employees/performance`)
         ]);
         setEmployees(empRes.data || []);
         setPerformance(perfRes.data || []);

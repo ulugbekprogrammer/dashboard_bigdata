@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import { Line, Bar, Doughnut, Radar, Scatter } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, ArcElement, RadarController, RadialLinearScale } from 'chart.js';
 import StatCard from '../components/StatCard';
@@ -50,12 +51,12 @@ export default function Dashboard() {
       const limitParam = `?limit=${params.limit}`;
 
       const [summaryRes, revenueRes, topCustomersRes, ordersRes, productsRes, analyticsRes] = await Promise.all([
-        axios.get('/api/dashboard/summary'),
-        axios.get(`/api/revenue/daily${limitParam}`),
-        axios.get('/api/customers/top'),
-        axios.get(`/api/orders/recent${limitParam}`),
-        axios.get(`/api/products${limitParam}`),
-        axios.get(`/api/orders/analytics${limitParam}`)
+        axios.get(`${API_BASE_URL}/api/dashboard/summary`),
+        axios.get(`${API_BASE_URL}/api/revenue/daily${limitParam}`),
+        axios.get(`${API_BASE_URL}/api/customers/top`),
+        axios.get(`${API_BASE_URL}/api/orders/recent${limitParam}`),
+        axios.get(`${API_BASE_URL}/api/products${limitParam}`),
+        axios.get(`${API_BASE_URL}/api/orders/analytics${limitParam}`)
       ]);
 
       setSummary(summaryRes.data || {});
