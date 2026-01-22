@@ -10,6 +10,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Basic health check for root path so deployments don't 404
+app.get('/', (_req, res) => {
+  res.json({ status: 'ok', message: 'Dashboard API is running' });
+});
+
 // MySQL connection pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
