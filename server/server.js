@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 // Configure CORS to allow frontend domain
 app.use(cors({
-  origin: ['https://dashboard-bigdata-5.onrender.com', 'http://localhost:3000'],
+  origin: ['https://dashboard-bigdata-6.onrender.com', 'http://localhost:3000'],
   credentials: true
 }));
 app.use(express.json());
